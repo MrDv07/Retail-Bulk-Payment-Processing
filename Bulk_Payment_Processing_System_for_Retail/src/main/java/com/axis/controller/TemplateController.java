@@ -25,7 +25,7 @@ public class TemplateController {
 	private TemplateHeaderService headerService;
 	
 	@PostMapping("/createtemplate")
-	public ResponseEntity<String> saveTemplate(@RequestBody TemplateHeader templateHeader, ArrayList<TemplateDetails> templateDetails) {
+	public ResponseEntity<String> saveTemplate(@RequestBody TemplateHeader templateHeader,@RequestBody ArrayList<TemplateDetails> templateDetails) {
 		headerService.saveTemplateHeader(templateHeader, templateDetails);
 		return new ResponseEntity<>("Template saved successfully", HttpStatus.OK);
 	}

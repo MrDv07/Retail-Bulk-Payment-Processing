@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,12 +15,12 @@ public class TemplateHeader {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int templateId;
+	private int id;
 	
-	@Column(name = "TemplateName")
+	
 	private String templateName;
 	
-	@Column(name = "CreationDate")
+	
 	private LocalDate creationDate;
 	
 	@OneToMany(mappedBy = "templateHeader", targetEntity=TemplateDetails.class, cascade = CascadeType.ALL)
@@ -34,18 +33,18 @@ public class TemplateHeader {
 	public TemplateHeader(int template_id, String templateName, LocalDate creationDate,
 			List<TemplateDetails> templateDetails) {
 		super();
-		this.templateId = template_id;
+		this.id = template_id;
 		this.templateName = templateName;
 		this.creationDate = creationDate;
 		this.templateDetails = templateDetails;
 	}
 
 	public int getTemplate_id() {
-		return templateId;
+		return id;
 	}
 
 	public void setTemplate_id(int template_id) {
-		this.templateId = template_id;
+		this.id = template_id;
 	}
 
 	public String getTemplateName() {

@@ -2,6 +2,7 @@ package com.axis.model;
 
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,23 +31,23 @@ public class TemplateDetails {
 	
 	private boolean isNonMandatory;
 	
-	@ManyToOne
-    @JoinColumn(name ="templateId")
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name ="id" )
     private TemplateHeader templateHeader;
 
 	public TemplateDetails() {
 		super();
 	}
 
-	public TemplateDetails(int templateDetailsId, String fieldName, int fieldOrder, boolean is_mandatory,
-			boolean is_conditional_mandatory, boolean is_non_mandatory, TemplateHeader templateHeader) {
+	public TemplateDetails(int templateDetailsId, String fieldName, int fieldOrder, boolean isMandatory,
+			boolean isConditionalMandatory, boolean isNonMandatory, TemplateHeader templateHeader) {
 		super();
 		this.templateDetailsId = templateDetailsId;
 		this.fieldName = fieldName;
 		this.fieldOrder = fieldOrder;
-		this.isMandatory = is_mandatory;
-		this.isConditionalMandatory = is_conditional_mandatory;
-		this.isNonMandatory = is_non_mandatory;
+		this.isMandatory = isMandatory;
+		this.isConditionalMandatory = isConditionalMandatory;
+		this.isNonMandatory = isNonMandatory;
 		this.templateHeader = templateHeader;
 	}
 
@@ -74,28 +75,28 @@ public class TemplateDetails {
 		this.fieldOrder = fieldOrder;
 	}
 
-	public boolean isIs_mandatory() {
+	public boolean isMandatory() {
 		return isMandatory;
 	}
 
-	public void setIs_mandatory(boolean is_mandatory) {
-		this.isMandatory = is_mandatory;
+	public void setMandatory(boolean isMandatory) {
+		this.isMandatory = isMandatory;
 	}
 
-	public boolean isIs_conditional_mandatory() {
+	public boolean isConditionalMandatory() {
 		return isConditionalMandatory;
 	}
 
-	public void setIs_conditional_mandatory(boolean is_conditional_mandatory) {
-		this.isConditionalMandatory = is_conditional_mandatory;
+	public void setConditionalMandatory(boolean isConditionalMandatory) {
+		this.isConditionalMandatory = isConditionalMandatory;
 	}
 
-	public boolean isIs_non_mandatory() {
+	public boolean isNonMandatory() {
 		return isNonMandatory;
 	}
 
-	public void setIs_non_mandatory(boolean is_non_mandatory) {
-		this.isNonMandatory = is_non_mandatory;
+	public void setNonMandatory(boolean isNonMandatory) {
+		this.isNonMandatory = isNonMandatory;
 	}
 
 	public TemplateHeader getTemplateHeader() {
@@ -105,7 +106,5 @@ public class TemplateDetails {
 	public void setTemplateHeader(TemplateHeader templateHeader) {
 		this.templateHeader = templateHeader;
 	}
-	
-	
 	
 }
