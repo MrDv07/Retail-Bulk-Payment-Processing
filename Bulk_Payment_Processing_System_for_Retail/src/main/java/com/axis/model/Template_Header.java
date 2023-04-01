@@ -17,10 +17,10 @@ public class Template_Header {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int template_id;
 	
-	@Column(name = "Template Name")
+	@Column(name = "TemplateName")
 	private String templateName;
 	
-	@Column(name = " Creation Date")
+	@Column(name = "CreationDate")
 	private LocalDate creationDate;
 	
 	@OneToMany(mappedBy = "templateHeader", targetEntity=Template_Details.class)
