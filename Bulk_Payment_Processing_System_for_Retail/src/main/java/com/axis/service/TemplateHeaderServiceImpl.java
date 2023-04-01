@@ -26,13 +26,13 @@ public class TemplateHeaderServiceImpl implements TemplateHeaderService {
 	public void saveTemplateHeader(Template_Header templateHeader, List<Template_Details> templateDetails) {
 		
 		templateHeader.setCreationDate(LocalDate.now());
-		
-		headerRepository.save(templateHeader);
-		
+			
 		for (Template_Details templateDetails1 : templateDetails) {
             templateDetails1.setTemplateHeader(templateHeader);
-            detailsRepository.save(templateDetails1);
+//            detailsRepository.save(templateDetails1);
         }
+		
+		headerRepository.save(templateHeader);
 		
 	}
 
