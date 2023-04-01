@@ -1,0 +1,5 @@
+package com.axis.repository;
+
+public class TemplateDetailsRepository {
+
+}

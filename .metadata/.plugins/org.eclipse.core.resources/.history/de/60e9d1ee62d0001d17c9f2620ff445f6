@@ -1,0 +1,27 @@
+package com.axis.model;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Template_Header {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int template_id;
+	
+	@Column(name = "Template Name")
+	private String templateName;
+	
+	@Column(name = " Creation Date")
+	private Date creationDate;
+	
+	
+	
+
+}

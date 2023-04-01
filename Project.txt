@@ -1,0 +1,35 @@
+1 - Create template in backend by hardcoding it (Manually). It should be a valid columns. 
+
+
+
+2 - Two Tables for Template :-
+    --------------------------- 
+
+        1- Template Header ( This will contain the name of the template , Id of the template , date of creation of template )
+
+	   2- Template Details (This Table will contain the details of the Template like the fields, order of the fields, template_details_Id, foreign key template_id )
+
+
+    
+3 - Two Tables for Payment :-
+    --------------------------
+
+	   1- Transaction Header (  This  table will hold the name of the excel file , date of upload , type of file , Transaction Id , foreign key template_id )
+
+	   2- Payment Details ( This will save the data from the excel sheet based on the fields present in the template details table , payment_details_id , 
+            foreign key ( template_details_id ) , foreign key ( Transaction Id ) )
+
+
+4 - WORKING :- 
+    -----------
+	
+	First the template will be created in the backend manually. For creating and saving the data of template we will make 2 tables Template Header & Template Details ( Those working is mentioned above).
+	Those two tables will have a master child relationship between them. 
+
+							After creating the Template we upload the excel file whose data will be saved in the two tables namely Transaction Header & Payment Details( Whose working is mentioned above ).
+	The Transaction Header will have a relationship with template header, Transaction Header will have a relationship with payment details , and payment details will have the 
+	relationship with template details so that when we upload the file it will check for the valid fields and their order from the template details table and store the data inside the 
+	Payment details table. We will also check for the validation of the fields while uploading the data. And Display the result of successful and failure of saving of records. 
+	
+	
+	

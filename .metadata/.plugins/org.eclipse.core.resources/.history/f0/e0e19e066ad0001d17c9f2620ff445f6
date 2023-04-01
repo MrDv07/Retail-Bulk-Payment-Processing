@@ -1,0 +1,9 @@
+package com.axis.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.axis.model.Template_Details;
+
+public interface TemplateDetailsRepository extends JpaRepository<Template_Details, Integer> {
+
+}
