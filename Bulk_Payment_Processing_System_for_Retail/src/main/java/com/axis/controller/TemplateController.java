@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import com.axis.model.Template_Details;
-import com.axis.model.Template_Header;
+import com.axis.model.TemplateDetails;
+import com.axis.model.TemplateHeader;
 import com.axis.service.TemplateHeaderService;
 
 @RestController
@@ -25,7 +25,7 @@ public class TemplateController {
 	private TemplateHeaderService headerService;
 	
 	@PostMapping("/createtemplate")
-	public ResponseEntity<String> saveTemplate(@RequestBody Template_Header templateHeader, ArrayList<Template_Details> templateDetails) {
+	public ResponseEntity<String> saveTemplate(@RequestBody TemplateHeader templateHeader, ArrayList<TemplateDetails> templateDetails) {
 		headerService.saveTemplateHeader(templateHeader, templateDetails);
 		return new ResponseEntity<>("Template saved successfully", HttpStatus.OK);
 	}

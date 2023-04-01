@@ -3,10 +3,10 @@ package com.axis.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.axis.model.Template_Details;
+import com.axis.model.TemplateDetails;
 
 
 @Repository
-public interface TemplateDetailsRepository extends JpaRepository<Template_Details, Integer> {
+public interface TemplateDetailsRepository extends JpaRepository<TemplateDetails, Integer> {
 
 }

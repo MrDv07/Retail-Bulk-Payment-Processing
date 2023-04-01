@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.axis.model.Template_Details;
-import com.axis.model.Template_Header;
+import com.axis.model.TemplateDetails;
+import com.axis.model.TemplateHeader;
 import com.axis.repository.TemplateDetailsRepository;
 import com.axis.repository.TemplateHeaderRepository;
 
@@ -23,13 +23,13 @@ public class TemplateHeaderServiceImpl implements TemplateHeaderService {
 	private TemplateDetailsRepository detailsRepository;
 	
 	@Override
-	public void saveTemplateHeader(Template_Header templateHeader, List<Template_Details> templateDetails) {
+	public void saveTemplateHeader(TemplateHeader templateHeader, List<TemplateDetails> templateDetails) {
 		
 		templateHeader.setCreationDate(LocalDate.now());
 			
-		for (Template_Details templateDetails1 : templateDetails) {
+		for (TemplateDetails templateDetails1 : templateDetails) {
             templateDetails1.setTemplateHeader(templateHeader);
-//            detailsRepository.save(templateDetails1);
+            detailsRepository.save(templateDetails1);
         }
 		
 		headerRepository.save(templateHeader);
@@ -39,13 +39,13 @@ public class TemplateHeaderServiceImpl implements TemplateHeaderService {
 	
 	
 	@Override
-	public Template_Header getTemplateHeaderById(int id) {
+	public TemplateHeader getTemplateHeaderById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Template_Header> getAllTemplateHeaders() {
+	public List<TemplateHeader> getAllTemplateHeaders() {
 		// TODO Auto-generated method stub
 		return null;
 	}
