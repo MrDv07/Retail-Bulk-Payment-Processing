@@ -15,13 +15,21 @@ function WebsiteNavigation() {
     <div class="container">
       <div class="row gy-3">
         <div class="col-lg-2 col-sm-4 col-4">
+          <a href="/" >
           <img src="https://www.axisbank.com/assets/images/logo-white.png" height="35" />
+          </a>
         </div>
-        <div class="order-lg-last col-lg-5 col-sm-8 col-8">
+      {/*  <div class="order-lg-last col-lg-5 col-sm-8 col-8">
           <div class="d-flex float-end border rounded border-light bg-light">
             <a href="http://localhost:3000/uploadexcel" class="border rounded py-1 px-3 nav-link d-flex align-items-center"> <i class="fas fa-shopping-cart m-1 me-md-2"></i><p class="d-none d-md-block mb-0 text-dark">Upload Excel</p> </a>
           </div>
         </div>
+        <div class="order-lg-last col-lg-5 col-sm-8 col-8" >
+          <div class="d-flex float-end border rounded border-light bg-light"   >
+            <a href="/transactionlist" class="border rounded py-1 px-3 nav-link d-flex align-items-center"> <i class="fas fa-shopping-cart m-1 me-md-2"></i><p class="d-none d-md-block mb-0 text-dark">Transaction List</p> </a>
+          </div>
+        </div>
+  */}
         <div class="col-lg-5 col-md-12 col-12">
           <div class="input-group float-center">
             {/* <div class="form-outline">

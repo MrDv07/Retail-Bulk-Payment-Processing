@@ -5,8 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.axis.model.TemplateHeader;
 
-
-@Repository
 public interface TemplateHeaderRepository extends JpaRepository<TemplateHeader, Integer> {
 
 }

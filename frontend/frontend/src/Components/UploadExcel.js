@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function UploadExcel () {
   const navigate = useNavigate();
+  const {templateId}= useParams();
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState('');
 
@@ -39,11 +40,11 @@ function UploadExcel () {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+    //localhost:9000/api/transaction/upload/file
     const formData = new FormData();
     formData.append('file', file);
     try {
-      const response = await axios.post('http://localhost:9000/api/bulkpayment/upload/file', formData, {
+     const response = await axios.post(`http://localhost:9000/api/transaction/upload/file/`+ templateId, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -56,14 +57,16 @@ function UploadExcel () {
     } catch (error) {
       console.log(error);
     }
+   
+     
   };
 
   return (
     <div className="container">
       <div className="py-4">
-        <h2>Upload a Excel File</h2>
+        <h2>Upload Excel File</h2>
         <div>
-      <label><h5>Upload Excel file</h5></label>
+      {/*<label><h5>Upload Excel file</h5></label>*/}
       <br></br>
       <form className='form-group' autoComplete="off" onSubmit={handleSubmit}>
         <div>

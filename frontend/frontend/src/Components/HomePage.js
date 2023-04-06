@@ -1,59 +1,127 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import DisplayExcel from "./DisplayExcel";
+import { Link, useParams } from "react-router-dom";
+//import DisplayExcel from "./DisplayExcel";
 
 export default function HomePage () {
+  const {templateId}= useParams();
   var bgColors = {
     "Default": "#AE275F",
     "button": "#EB1165"
   };
-  const [tableNames, setTableNames] = useState([]);
+
+  const [apiData, setApiData] = useState([]);
 
   useEffect(() => {
-    loadUsers();
+    axios.get("http://localhost:9000/api/template/templateheaders")
+      .then((response) => {
+        console.log(response.data);
+        setApiData(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }, []);
 
-  const loadUsers = async () => {
-    const result = await axios.get("http://localhost:9000/api/bulkpayment/tablenames");
-    setTableNames(result.data);
+  const getData=()=>{
+    axios.get("http://localhost:9000/api/template/templateheaders")
+    .then((getData)=>{
+      setApiData(getData);
+    })
+  }
+
+  const deleteTable =  () => {
+     axios.delete(`http://localhost:9000/api/template/delete/`+templateId)
+      .then(()=>{
+        getData();
+
+      })
+     alert("Template deleted successfully!");
+   
+    }
+  
+
+  const handleFileUpload = async (event) => {
+    const formData = new FormData();
+    formData.append("file", event.target.files[0]);
+    axios.post("http://localhost:9000/api/transaction/upload/file/", formData)
+      .then((response) => {
+        console.log(response.data);
+        alert("File uploaded successfully!");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
-  const deleteUser = async (table) => {
-    await axios.delete(`http://localhost:9000/api/bulkpayment/table/${table}`);
-    loadUsers();
-  };
+  
 
   return (
     <div className="container">
       <div className="py-4">
-        <h2>List of Files</h2>
+        <h2>List of Templates</h2>
+        
         <table className="table border shadow">
+          <thead>
+            <tr>
+              <th>Template ID</th>
+              <th>Creation Date</th>
+              <th>Template Name</th>
+              <th style={{ textAlign: 'center', paddingRight: '40px' }} >Actions</th>
+            </tr>
+          </thead>
           <tbody>
-            {tableNames.map((table) => (
-              <tr>
-                <td>{table}</td>
-                <td width="270">
+            {apiData.map((data) => (
+              <tr key={data.template_id} >
+                <td>{data.template_id}</td>
+                <td>{data.creationDate}</td>
+                <td>{data.templateName}</td>
+                <td style={{ textAlign: 'center', paddingRight: '40px' }}>
                   <Link
                     style={{backgroundColor: bgColors.Default}}
                     className="btn btn-primary mx-2 border-light"
-                    onClick={() => DisplayExcel.loadUsers({table})}
-                    to={`/displayexcel`}
+                    onClick={() => this.DisplayExcel(data.template_id)}
+                    to={'/displayexcel/'+ data.template_id}
+                    
                   >
                     View
                   </Link>
-                  <Link
+                {/*  <Link
                     className="btn btn-outline-primary mx-2 text-dark border-dark"
                     to={`/editexcel`}
                   >
                     Edit
-                  </Link>
+            </Link> */}
                   <button
                     className="btn btn-danger mx-3"
-                    onClick={() => deleteUser(table)}
+                    onClick={() => deleteTable(data.templateId)}
+                    
                   >
                     Delete
                   </button>
+    
+                  <Link
+                      style={{backgroundColor: bgColors.sucess}}
+                      className="btn btn-success mx-2 border-light outline"
+                      onClick={handleFileUpload}
+                      to={'/uploadexcel/' + data.template_id}>
+
+                      Upload
+
+                  </Link>
+                  
+                  <Link
+                      style={{backgroundColor: bgColors.sucess}}
+                      className="btn btn-primary  mx-2 border-light outline"
+                      
+                      to={'/transactionheader' }>
+
+                     History
+
+                  </Link>
+                  
+
+                 
                 </td>
               </tr>
             ))}

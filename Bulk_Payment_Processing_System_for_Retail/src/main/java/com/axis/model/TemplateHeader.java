@@ -5,46 +5,49 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties
 @Entity
 public class TemplateHeader {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
+	private int templateId;
 	
 	private String templateName;
 	
-	
 	private LocalDate creationDate;
 	
-	@OneToMany(mappedBy = "templateHeader", targetEntity=TemplateDetails.class, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "templateHeader", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("templateHeader")
 	private List<TemplateDetails> templateDetails;
 
 	public TemplateHeader() {
 		super();
 	}
 
-	public TemplateHeader(int template_id, String templateName, LocalDate creationDate,
+	public TemplateHeader(int templateId, String templateName, LocalDate creationDate,
 			List<TemplateDetails> templateDetails) {
 		super();
-		this.id = template_id;
+		this.templateId = templateId;
 		this.templateName = templateName;
 		this.creationDate = creationDate;
 		this.templateDetails = templateDetails;
 	}
 
 	public int getTemplate_id() {
-		return id;
+		return templateId;
 	}
 
 	public void setTemplate_id(int template_id) {
-		this.id = template_id;
+		this.templateId = template_id;
 	}
 
 	public String getTemplateName() {
